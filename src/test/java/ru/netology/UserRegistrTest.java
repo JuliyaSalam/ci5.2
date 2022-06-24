@@ -51,7 +51,7 @@ public class UserRegistrTest {
     public void errorLogin() {
         UserData userActive = UserGenerator.generatorUser("active");
         UserRegistration.registration(userActive);
-        form.$x(".//span[@data-test-id='login']//input").val("000");
+        form.$x(".//span[@data-test-id='login']//input").val(UserGenerator.generateLogin());
         form.$x(".//span[@data-test-id='password']//input").val(userActive.getPassword());
         form.$x(".//button").click();
         error.should(visible);
@@ -65,7 +65,7 @@ public class UserRegistrTest {
         UserData userActive = UserGenerator.generatorUser("active");
         UserRegistration.registration(userActive);
         form.$x(".//span[@data-test-id='login']//input").val(userActive.getLogin());
-        form.$x(".//span[@data-test-id='password']//input").val("000");
+        form.$x(".//span[@data-test-id='password']//input").val(UserGenerator.generatePassword());
         form.$x(".//button").click();
         error.should(visible);
         error.$x(".//div[@class='notification__content']").should(text("Неверно указан логин или пароль"));
